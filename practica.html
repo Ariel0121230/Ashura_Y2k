@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Tienda Y2K - Wtf_ashuraY2k</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400..800;1,400..800&family=Numans&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       AUDIO DE FONDO
+  =========================================== -->
+  <audio id="musica-fondo" loop preload="auto">
+    <source src="Audio/tiksss-lojastreetbusiness-61019398.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+  </audio>
+
+
+  <!-- ==========================================
+       PANTALLA DE ACCESO (LOGIN / REGISTRO)
+  =========================================== -->
+  <div id="pantalla-auth" class="auth-overlay">
+    <div class="auth-grid-bg"></div>
+    <div class="auth-glow-orb orb-1"></div>
+    <div class="auth-glow-orb orb-2"></div>
+
+    <div class="auth-contenedor">
+      <div class="auth-logo">
+        <i class="fa-solid fa-eye"></i> Wtf_ashuraY2k
+      </div>
+
+      <!-- Pestañas para cambiar entre Iniciar Sesión y Registrarse -->
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab activo" id="tab-login">Iniciar Sesión</button>
+        <button type="button" class="auth-tab" id="tab-registro">Registrarse</button>
+      </div>
+
+      <!-- Mensaje de error o éxito -->
+      <div id="auth-mensaje" class="auth-mensaje"></div>
+
+      <!-- FORMULARIO INICIAR SESIÓN -->
+      <form id="form-login" class="auth-form activo">
+        <div class="grupo-campo">
+          <label for="login-email" class="etiqueta">Correo Electrónico</label>
+          <input type="email" id="login-email" class="campo-texto" placeholder="tu@correo.com" required>
+        </div>
+        <div class="grupo-campo">
+          <label for="login-pass" class="etiqueta">Contraseña</label>
+          <div class="input-icono-wrapper">
+            <input type="password" id="login-pass" class="campo-texto con-ojo" placeholder="••••••••" required>
+            <button type="button" class="btn-ver-pass" data-target="login-pass" aria-label="Mostrar contraseña">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="auth-opciones">
+          <label class="checkbox-y2k">
+            <input type="checkbox" id="recordar-sesion" checked> Recordar sesión
+          </label>
+        </div>
+        <button type="submit" class="boton-enviar">
+          <i class="fa-solid fa-right-to-bracket"></i> Entrar a la Tienda
+        </button>
+      </form>
+
+      <!-- FORMULARIO REGISTRO -->
+      <form id="form-registro" class="auth-form">
+        <div class="grupo-campo">
+          <label for="reg-nombre" class="etiqueta">Nombre o Apodo Y2K</label>
+          <input type="text" id="reg-nombre" class="campo-texto" placeholder="Ej. Ashura2000" required>
+        </div>
+        <div class="grupo-campo">
+          <label for="reg-email" class="etiqueta">Correo Electrónico</label>
+          <input type="email" id="reg-email" class="campo-texto" placeholder="tu@correo.com" required>
+        </div>
+        <div class="grupo-campo">
+          <label for="reg-pass" class="etiqueta">Contraseña</label>
+          <div class="input-icono-wrapper">
+            <input type="password" id="reg-pass" class="campo-texto con-ojo" placeholder="Mínimo 4 caracteres" minlength="4" required>
+            <button type="button" class="btn-ver-pass" data-target="reg-pass" aria-label="Mostrar contraseña">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" class="boton-enviar">
+          <i class="fa-solid fa-user-plus"></i> Crear Cuenta y Entrar
+        </button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- ==========================================
+       CONTENIDO PRINCIPAL DE LA TIENDA
+  =========================================== -->
+  <div id="contenido-tienda" class="tienda-oculta">
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header class="header-navegacion">
+
+      <div class="logo">
+        <a href="https://www.instagram.com/wtf_ashuray2k" target="_blank" rel="noopener noreferrer">
+          <i class="fa-solid fa-eye"></i>
+          Tienda de Ropa
+        </a>
+      </div>
+
+      <!-- BOTÓN DE MENÚ HAMBURGUESA -->
+      <button class="toggle-menu" id="toggle-menu" aria-label="Abrir menú de navegación">
+        <i class="fa-solid fa-bars" id="icono-menu"></i>
+      </button>
+
+      <nav class="menu" id="menu-navegacion">
+        <a href="#inicio" class="enlace-menu">
+          <i class="fa-solid fa-house"></i> Inicio
+        </a>
+        <a href="#productos" class="enlace-menu">
+          <i class="fa-solid fa-box-open"></i> Productos
+        </a>
+        <a href="#galeria" class="enlace-menu">
+          <i class="fa-solid fa-image"></i> Galería
+        </a>
+        <a href="#testimonios" class="enlace-menu">
+          <i class="fa-solid fa-comment"></i> Testimonios
+        </a>
+        <a href="#contacto" class="enlace-menu">
+          <i class="fa-solid fa-envelope"></i> Contacto
+        </a>
+
+        <!-- BOTÓN DE MODO OSCURO INTEGRADO AL MENÚ -->
+        <a href="#" id="btn-tema" class="enlace-menu boton-modo-texto">
+          <i class="fa-solid fa-moon"></i> Modo Claro
+        </a>
+
+        <!-- ICONO DE USUARIO + TEXTO "MI CUENTA" -->
+        <div class="perfil-usuario-wrapper" id="perfil-usuario-wrapper">
+          <button type="button" id="btn-icono-usuario" class="enlace-menu btn-icono-usuario" title="Opciones de cuenta">
+            <i class="fa-solid fa-user"></i> Mi cuenta
+          </button>
+
+          <!-- MENÚ DESPLEGABLE DEL USUARIO -->
+          <div id="dropdown-perfil" class="dropdown-perfil">
+            <div class="dropdown-perfil-header">
+              <div class="avatar-mini">
+                <i class="fa-solid fa-user"></i>
+              </div>
+              <div class="datos-usuario-dropdown">
+                <span class="estado-online"><span class="punto-verde"></span> En línea</span>
+                <strong id="nombre-usuario-nav">Usuario Y2K</strong>
+                <small id="email-usuario-nav">usuario@correo.com</small>
+              </div>
+            </div>
+
+            <div class="dropdown-divisor"></div>
+
+            <button type="button" id="btn-abrir-perfil" class="dropdown-item">
+              <i class="fa-solid fa-id-card"></i> Mi perfil
+            </button>
+
+            <button type="button" id="btn-abrir-direccion" class="dropdown-item">
+              <i class="fa-solid fa-location-dot"></i> Direcciones
+            </button>
+
+            <div class="dropdown-divisor"></div>
+
+            <button type="button" id="btn-cerrar-sesion" class="dropdown-item dropdown-btn-salir">
+              <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+            </button>
+          </div>
+        </div>
+      </nav>
+
+    </header>
+
+    <!-- ==========================================
+         MODALES DE MI PERFIL Y DIRECCIÓN
+    =========================================== -->
+    <!-- MODAL MI PERFIL -->
+    <div id="modal-mi-perfil" class="modal-usuario-overlay">
+      <div class="modal-usuario-caja">
+        <button type="button" class="cerrar-modal-usuario" data-close="modal-mi-perfil">&times;</button>
+        <h2 class="titulo-modal"><i class="fa-solid fa-id-card"></i> Mi Perfil</h2>
+        <p class="subtitulo-modal">Administra los datos de tu cuenta Y2K.</p>
+
+        <form id="form-mi-perfil" class="formulario">
+          <div class="grupo-campo">
+            <label for="perfil-nombre" class="etiqueta">Nombre o Apodo Y2K</label>
+            <input type="text" id="perfil-nombre" class="campo-texto" required>
+          </div>
+          <div class="grupo-campo">
+            <label for="perfil-email" class="etiqueta">Correo Electrónico</label>
+            <input type="email" id="perfil-email" class="campo-texto" readonly>
+          </div>
+          <div class="grupo-campo">
+            <label for="perfil-telefono" class="etiqueta">Teléfono / WhatsApp</label>
+            <input type="tel" id="perfil-telefono" class="campo-texto" placeholder="Ej. +51 999 888 777">
+          </div>
+          <div id="msg-perfil" class="auth-mensaje"></div>
+          <button type="submit" class="boton-enviar">
+            <i class="fa-solid fa-floppy-disk"></i> Guardar Perfil
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- MODAL DIRECCIÓN -->
+    <div id="modal-direccion" class="modal-usuario-overlay">
+      <div class="modal-usuario-caja">
+        <button type="button" class="cerrar-modal-usuario" data-close="modal-direccion">&times;</button>
+        <h2 class="titulo-modal"><i class="fa-solid fa-location-dot"></i> Mi Dirección</h2>
+        <p class="subtitulo-modal">Dirección de entrega para tus pedidos.</p>
+
+        <form id="form-direccion" class="formulario">
+          <div class="grupo-campo">
+            <label for="dir-ciudad" class="etiqueta">Ciudad / Distrito</label>
+            <input type="text" id="dir-ciudad" class="campo-texto" placeholder="Ej. Lima - Miraflores" required>
+          </div>
+          <div class="grupo-campo">
+            <label for="dir-calle" class="etiqueta">Calle / Avenida / Número</label>
+            <input type="text" id="dir-calle" class="campo-texto" placeholder="Ej. Av. Larco 123, Dpto 402" required>
+          </div>
+          <div class="grupo-campo">
+            <label for="dir-referencia" class="etiqueta">Referencia</label>
+            <input type="text" id="dir-referencia" class="campo-texto" placeholder="Ej. Frente al parque principal">
+          </div>
+          <div id="msg-direccion" class="auth-mensaje"></div>
+          <button type="submit" class="boton-enviar">
+            <i class="fa-solid fa-floppy-disk"></i> Guardar Dirección
+          </button>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- SECCIÓN HERO -->
+    <section id="inicio" class="seccion-hero">
+      <video autoplay loop muted playsinline class="video-fondo-hero">
+        <source src="video/ssstik.io_1794347555668.mp4" type="video/mp4">
+        Tu navegador no soporta el formato de video.
+      </video>
+
+      <div class="overlay-hero"></div>
+
+      <div class="contenido-hero">
+        <h1 class="titulo-hero">
+          Wtf_ashuraY2k
+        </h1>
+
+        <h2 class="hero-typewriter-container">
+          Lo mejor en <span class="texto-mecanografiado" id="texto-mecanografiado"></span><span class="cursor-parpadeante">&nbsp;</span>
+        </h2>
+
+        <p class="subtitulo-hero">
+          Encuentra tu estilo único y revive la moda urbana de los 2000.
+        </p>
+
+        <a href="#productos" class="boton-cta">
+          <i class="fa-solid fa-shirt"></i> Sección de ropa
+        </a>
+      </div>
+    </section>
+
+    <!-- BENEFICIOS -->
+    <section class="seccion-beneficios">
+      <div class="contenedor-beneficios">
+        <div class="caja-beneficio">
+          <i class="fa-solid fa-truck-fast icono-beneficio"></i>
+          <h3>Envío Rápido</h3>
+          <p>Recibe tus prendas Y2K de manera rápida y segura.</p>
+        </div>
+        <div class="caja-beneficio">
+          <i class="fa-solid fa-shield-halved icono-beneficio"></i>
+          <h3>Compra Segura</h3>
+          <p>Compra tus prendas con seguridad y confianza.</p>
+        </div>
+        <div class="caja-beneficio">
+          <i class="fa-solid fa-credit-card icono-beneficio"></i>
+          <h3>Pagos Flexibles</h3>
+          <p>Aceptamos tarjetas de crédito, débito y transferencias.</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- PRODUCTOS (Tipos de Ropa) -->
+    <section id="productos" class="seccion-productos">
+
+      <h2 class="titulo-seccion">
+        Tipos de Ropa
+      </h2>
+
+      <div class="contenedor-productos">
+
+        <!-- PRODUCTO 1: POLOS -->
+        <article class="tarjeta-producto">
+          <div class="contenedor-foto">
+            <img src="Imagenes/Polos.jpg" alt="Polos Y2K" class="foto-producto">
+          </div>
+          <div class="contenido-tarjeta">
+            <h3 class="nombre-producto">Polos Y2K</h3>
+            <p class="descripcion-producto">
+              Polos Y2K cómodos, modernos y con diseños inspirados en la moda de los años 2000.
+            </p>
+            <a href="#modal-polos" class="boton-comprar">
+              <i class="fa-solid fa-shirt"></i> Ver Modelos
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 2: PANTALONES -->
+        <article class="tarjeta-producto">
+          <div class="contenedor-foto">
+            <img src="Imagenes/Pantalones.jpg" alt="Pantalones Y2K" class="foto-producto">
+          </div>
+          <div class="contenido-tarjeta">
+            <h3 class="nombre-producto">Pantalones Y2K</h3>
+            <p class="descripcion-producto">
+              Pantalones Y2K anchos, cómodos y con diseños inspirados en la moda de los 2000.
+            </p>
+            <a href="#modal-pantalones" class="boton-comprar">
+              <i class="fa-solid fa-shirt"></i> Ver Modelos
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 3: POLERAS -->
+        <article class="tarjeta-producto">
+          <div class="contenedor-foto">
+            <img src="Imagenes/Poleras.jpg" alt="Poleras Y2K" class="foto-producto">
+          </div>
+          <div class="contenido-tarjeta">
+            <h3 class="nombre-producto">Poleras Y2K</h3>
+            <p class="descripcion-producto">
+              Poleras Y2K con buen diseño, cómodas y perfectas para crear un estilo único.
+            </p>
+            <a href="#modal-poleras" class="boton-comprar">
+              <i class="fa-solid fa-shirt"></i> Ver Modelos
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 4: GORROS DE LANA -->
+        <article class="tarjeta-producto">
+          <div class="contenedor-foto">
+            <img src="Imagenes/gorro de lana.jpg" alt="Gorros de lana Y2K" class="foto-producto">
+          </div>
+          <div class="contenido-tarjeta">
+            <h3 class="nombre-producto">Gorros de lana Y2K</h3>
+            <p class="descripcion-producto">
+              Gorros de lana Y2K con gran capacidad para abrigar sin sobrecalentar y a buen precio.
+            </p>
+            <a href="#modal-gorros" class="boton-comprar">
+              <i class="fa-solid fa-shirt"></i> Ver Modelos
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 5: ZAPATILLAS -->
+        <article class="tarjeta-producto">
+          <div class="contenedor-foto">
+            <img src="Imagenes/Zapatillas.jpg" alt="Zapatillas Y2K" class="foto-producto">
+          </div>
+          <div class="contenido-tarjeta">
+            <h3 class="nombre-producto">Zapatillas Y2K</h3>
+            <p class="descripcion-producto">
+              Las zapatillas de estilo Y2K destacan en la moda actual por su diseño y comodidad ligera.
+            </p>
+            <a href="#modal-zapatillas" class="boton-comprar">
+              <i class="fa-solid fa-shirt"></i> Ver Modelos
+            </a>
+          </div>
+        </article>
+
+        <!-- PRODUCTO 6: MANGA LARGA -->
+        <article class="tarjeta-producto">
+          <div class="contenedor-foto">
+            <img src="Imagenes/manga larga fondo.jpg" alt="Manga Larga Y2K" class="foto-producto">
+          </div>
+          <div class="contenido-tarjeta">
+            <h3 class="nombre-producto">Manga Larga Y2K</h3>
+            <p class="descripcion-producto">
+              Polos de manga larga Y2K con gráficos estéticos y un ajuste cómodo para cualquier ocasión.
+            </p>
+            <a href="#modal-mangalarga" class="boton-comprar">
+              <i class="fa-solid fa-shirt"></i> Ver Modelos
+            </a>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         MODALES SEPARADOS PARA CADA TIPO DE PRODUCTO
+    =========================================== -->
+
+    <!-- MODAL 1: POLOS Y2K -->
+    <div id="modal-polos" class="modal-overlay">
+      <div class="contenido-modal contenido-modal-amplio">
+        <a href="#productos" class="boton-cerrar-modal">&times;</a>
+        <h2 class="titulo-modal">Polos Y2K</h2>
+        <p class="subtitulo-modal">Haz clic en cualquier imagen para verla en grande.</p>
+        
+        <div class="contenedor-modelos-modal">
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polo-1" title="Ampliar imagen">
+              <div class="contenedor-foto-modelo">
+                <img src="Imagenes/polo affliction.jpg" alt="Polo Affliction" class="foto-modelo-unico">
+              </div>
+            </a>
+            <div class="info-modelo-unico">
+              <h3>Polo Affliction</h3>
+              <span class="precio-modelo">$8.00</span>
+              <div class="grupo-reserva">
+                <label for="talla-polos-1">Talla:</label>
+                <select id="talla-polos-1" class="select-talla">
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+              </div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Polo%20Affliction%20($8.00)" target="_blank" class="boton-accion boton-reservar">
+                  <i class="fa-solid fa-bookmark"></i> Reservar
+                </a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Polo%20Affliction%20($8.00)" target="_blank" class="boton-accion boton-comprar-modal">
+                  <i class="fa-solid fa-bag-shopping"></i> Comprar
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polo-2" title="Ampliar imagen">
+              <div class="contenedor-foto-modelo">
+                <img src="Imagenes/Polo getfordrift.jpg" alt="Polo Getfordrift" class="foto-modelo-unico">
+              </div>
+            </a>
+            <div class="info-modelo-unico">
+              <h3>Polo Getfordrift</h3>
+              <span class="precio-modelo">$9.00</span>
+              <div class="grupo-reserva">
+                <label for="talla-polos-2">Talla:</label>
+                <select id="talla-polos-2" class="select-talla">
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+              </div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Polo%20Getfordrift%20($9.00)" target="_blank" class="boton-accion boton-reservar">
+                  <i class="fa-solid fa-bookmark"></i> Reservar
+                </a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Polo%20Getfordrift%20($9.00)" target="_blank" class="boton-accion boton-comprar-modal">
+                  <i class="fa-solid fa-bag-shopping"></i> Comprar
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polo-3" title="Ampliar imagen">
+              <div class="contenedor-foto-modelo">
+                <img src="Imagenes/polo fox.jpg" alt="Polo Monster" class="foto-modelo-unico">
+              </div>
+            </a>
+            <div class="info-modelo-unico">
+              <h3>Polo Monster</h3>
+              <span class="precio-modelo">$10.00</span>
+              <div class="grupo-reserva">
+                <label for="talla-polos-3">Talla:</label>
+                <select id="talla-polos-3" class="select-talla">
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+              </div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Polo%20Monster%20($10.00)" target="_blank" class="boton-accion boton-reservar">
+                  <i class="fa-solid fa-bookmark"></i> Reservar
+                </a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Polo%20Monster%20($10.00)" target="_blank" class="boton-accion boton-comprar-modal">
+                  <i class="fa-solid fa-bag-shopping"></i> Comprar
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polo-4" title="Ampliar imagen">
+              <div class="contenedor-foto-modelo">
+                <img src="Imagenes/Tapout.jpg" alt="Polo Tapout" class="foto-modelo-unico">
+              </div>
+            </a>
+            <div class="info-modelo-unico">
+              <h3>Polo Tapout</h3>
+              <span class="precio-modelo">$10.00</span>
+              <div class="grupo-reserva">
+                <label for="talla-polos-4">Talla:</label>
+                <select id="talla-polos-4" class="select-talla">
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+              </div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Polo%20Tapout%20($10.00)" target="_blank" class="boton-accion boton-reservar">
+                  <i class="fa-solid fa-bookmark"></i> Reservar
+                </a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Polo%20Tapout%20($10.00)" target="_blank" class="boton-accion boton-comprar-modal">
+                  <i class="fa-solid fa-bag-shopping"></i> Comprar
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polo-5" title="Ampliar imagen">
+              <div class="contenedor-foto-modelo">
+                <img src="Imagenes/Polo mma elite.jpg" alt="Polo Mma Elite" class="foto-modelo-unico">
+              </div>
+            </a>
+            <div class="info-modelo-unico">
+              <h3>Polo Mma Elite</h3>
+              <span class="precio-modelo">$10.00</span>
+              <div class="grupo-reserva">
+                <label for="talla-polos-5">Talla:</label>
+                <select id="talla-polos-5" class="select-talla">
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+              </div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Polo%20Mma%20Elite%20($10.00)" target="_blank" class="boton-accion boton-reservar">
+                  <i class="fa-solid fa-bookmark"></i> Reservar
+                </a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Polo%20Mma%20Elite%20($10.00)" target="_blank" class="boton-accion boton-comprar-modal">
+                  <i class="fa-solid fa-bag-shopping"></i> Comprar
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polo-6" title="Ampliar imagen">
+              <div class="contenedor-foto-modelo">
+                <img src="Imagenes/Polo avirex.jpg" alt="Polo Avirex" class="foto-modelo-unico">
+              </div>
+            </a>
+            <div class="info-modelo-unico">
+              <h3>Polo Avirex</h3>
+              <span class="precio-modelo">$10.00</span>
+              <div class="grupo-reserva">
+                <label for="talla-polos-6">Talla:</label>
+                <select id="talla-polos-6" class="select-talla">
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                </select>
+              </div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Polo%20Avirex%20($10.00)" target="_blank" class="boton-accion boton-reservar">
+                  <i class="fa-solid fa-bookmark"></i> Reservar
+                </a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Polo%20Avirex%20($10.00)" target="_blank" class="boton-accion boton-comprar-modal">
+                  <i class="fa-solid fa-bag-shopping"></i> Comprar
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOXES POLOS -->
+    <div id="zoom-polo-1" class="lightbox-overlay"><a href="#modal-polos" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/polo affliction.jpg" alt="Polo Affliction" class="foto-lightbox"></div>
+    <div id="zoom-polo-2" class="lightbox-overlay"><a href="#modal-polos" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Polo getfordrift.jpg" alt="Polo Getfordrift" class="foto-lightbox"></div>
+    <div id="zoom-polo-3" class="lightbox-overlay"><a href="#modal-polos" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/polo fox.jpg" alt="Polo Monster" class="foto-lightbox"></div>
+    <div id="zoom-polo-4" class="lightbox-overlay"><a href="#modal-polos" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Tapout.jpg" alt="Polo Tapout" class="foto-lightbox"></div>
+    <div id="zoom-polo-5" class="lightbox-overlay"><a href="#modal-polos" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Polo mma elite.jpg" alt="Polo Mma Elite" class="foto-lightbox"></div>
+    <div id="zoom-polo-6" class="lightbox-overlay"><a href="#modal-polos" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Polo avirex.jpg" alt="Polo Avirex" class="foto-lightbox"></div>
+
+
+    <!-- MODAL 2: PANTALONES Y2K -->
+    <div id="modal-pantalones" class="modal-overlay">
+      <div class="contenido-modal contenido-modal-amplio">
+        <a href="#productos" class="boton-cerrar-modal">&times;</a>
+        <h2 class="titulo-modal">Pantalones Y2K</h2>
+        <p class="subtitulo-modal">Haz clic en cualquier imagen para verla en grande.</p>
+        
+        <div class="contenedor-modelos-modal">
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-pantalon-1" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/southpole red tab.jpg" alt="Pantalon South Pole" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Pantalon South Pole</h3>
+              <span class="precio-modelo">$22.00</span>
+              <div class="grupo-reserva"><label for="talla-pantalones-1">Talla:</label><select id="talla-pantalones-1" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Pantalon%20South%20Pole%20($22.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Pantalon%20South%20Pole%20($22.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-pantalon-2" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Sigzaan.jpg" alt="Pantalon Sigzaan" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Pantalon Sigzaan</h3>
+              <span class="precio-modelo">$25.00</span>
+              <div class="grupo-reserva"><label for="talla-pantalones-2">Talla:</label><select id="talla-pantalones-2" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Pantalon%20Sigzaan%20($25.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Pantalon%20Sigzaan%20($25.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-pantalon-3" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Jnco.jpg" alt="Pantalon Jnco" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Pantalon Jnco</h3>
+              <span class="precio-modelo">$25.00</span>
+              <div class="grupo-reserva"><label for="talla-pantalones-3">Talla:</label><select id="talla-pantalones-3" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Pantalon%20Jnco%20($25.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Pantalon%20Jnco%20($25.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-pantalon-4" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Ed Hardy Jeans (1).jpg" alt="Pantalon Ed Hardy" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Pantalon Ed Hardy</h3>
+              <span class="precio-modelo">$25.00</span>
+              <div class="grupo-reserva"><label for="talla-pantalones-4">Talla:</label><select id="talla-pantalones-4" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Pantalon%20Ed%20Hardy%20($25.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Pantalon%20Ed%20Hardy%20($25.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-pantalon-5" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/True religion baggy.jpg" alt="Pantalon True religion" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Pantalon True religion</h3>
+              <span class="precio-modelo">$25.00</span>
+              <div class="grupo-reserva"><label for="talla-pantalones-5">Talla:</label><select id="talla-pantalones-5" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Pantalon%20True%20Religion%20($25.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Pantalon%20True%20Religion%20($25.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-pantalon-6" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/camuflaje.jpg" alt="Pantalon Camuflaje" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Pantalon Camuflaje</h3>
+              <span class="precio-modelo">$25.00</span>
+              <div class="grupo-reserva"><label for="talla-pantalones-6">Talla:</label><select id="talla-pantalones-6" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Pantalon%20Camuflaje%20($25.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Pantalon%20Camuflaje%20($25.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOXES PANTALONES -->
+    <div id="zoom-pantalon-1" class="lightbox-overlay"><a href="#modal-pantalones" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/southpole red tab.jpg" alt="Pantalon South Pole" class="foto-lightbox"></div>
+    <div id="zoom-pantalon-2" class="lightbox-overlay"><a href="#modal-pantalones" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Sigzaan.jpg" alt="Pantalon Sigzaan" class="foto-lightbox"></div>
+    <div id="zoom-pantalon-3" class="lightbox-overlay"><a href="#modal-pantalones" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Jnco.jpg" alt="Pantalon Jnco" class="foto-lightbox"></div>
+    <div id="zoom-pantalon-4" class="lightbox-overlay"><a href="#modal-pantalones" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Ed Hardy Jeans (1).jpg" alt="Pantalon Ed Hardy" class="foto-lightbox"></div>
+    <div id="zoom-pantalon-5" class="lightbox-overlay"><a href="#modal-pantalones" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/True religion baggy.jpg" alt="Pantalon True religion" class="foto-lightbox"></div>
+    <div id="zoom-pantalon-6" class="lightbox-overlay"><a href="#modal-pantalones" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/camuflaje.jpg" alt="Pantalon Camuflaje" class="foto-lightbox"></div>
+
+
+    <!-- MODAL 3: POLERAS Y2K -->
+    <div id="modal-poleras" class="modal-overlay">
+      <div class="contenido-modal contenido-modal-amplio">
+        <a href="#productos" class="boton-cerrar-modal">&times;</a>
+        <h2 class="titulo-modal">Poleras Y2K</h2>
+        <p class="subtitulo-modal">Haz clic en cualquier imagen para verla en grande.</p>
+        
+        <div class="contenedor-modelos-modal">
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polera-1" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/mma elite via @scars_st.jpg" alt="Polera Mma Elite" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Polera Mma Elite</h3>
+              <span class="precio-modelo">$18.00</span>
+              <div class="grupo-reserva"><label for="talla-poleras-1">Talla:</label><select id="talla-poleras-1" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Polera%20Mma%20Elite%20($18.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Polera%20Mma%20Elite%20($18.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polera-2" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/descarga (1).jpg" alt="Polera Dc" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Polera Dc</h3>
+              <span class="precio-modelo">$16.00</span>
+              <div class="grupo-reserva"><label for="talla-poleras-2">Talla:</label><select id="talla-poleras-2" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Polera%20Dc%20($16.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Polera%20Dc%20($16.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polera-3" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Fox x Monster.jpg" alt="Polera Monster" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Polera Monster</h3>
+              <span class="precio-modelo">$17.50</span>
+              <div class="grupo-reserva"><label for="talla-poleras-3">Talla:</label><select id="talla-poleras-3" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Polera%20Monster%20($17.50)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Polera%20Monster%20($17.50)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polera-4" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/descarga (2).jpg" alt="Polera Skeleton" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Polera Skeleton</h3>
+              <span class="precio-modelo">$20.00</span>
+              <div class="grupo-reserva"><label for="talla-poleras-4">Talla:</label><select id="talla-poleras-4" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Polera%20Skeleton%20($20.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Polera%20Skeleton%20($20.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polera-5" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/ECKO UNLTD Riding Demon Zip Hoddie @ecko_unltd.jpg" alt="Polera Ecko Unltd" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Polera Ecko Unltd</h3>
+              <span class="precio-modelo">$19.00</span>
+              <div class="grupo-reserva"><label for="talla-poleras-5">Talla:</label><select id="talla-poleras-5" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Polera%20Ecko%20Unltd%20($19.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Polera%20Ecko%20Unltd%20($19.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-polera-6" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/FULLZIP CREEPER via @nemo_y2k.jpg" alt="Polera Creeper" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Polera Creeper</h3>
+              <span class="precio-modelo">$17.50</span>
+              <div class="grupo-reserva"><label for="talla-poleras-6">Talla:</label><select id="talla-poleras-6" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Polera%20Creeper%20($17.50)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Polera%20Creeper%20($17.50)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOXES POLERAS -->
+    <div id="zoom-polera-1" class="lightbox-overlay"><a href="#modal-poleras" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/mma elite via @scars_st.jpg" alt="Polera Mma Elite" class="foto-lightbox"></div>
+    <div id="zoom-polera-2" class="lightbox-overlay"><a href="#modal-poleras" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/descarga (1).jpg" alt="Polera Dc" class="foto-lightbox"></div>
+    <div id="zoom-polera-3" class="lightbox-overlay"><a href="#modal-poleras" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Fox x Monster.jpg" alt="Polera Monster" class="foto-lightbox"></div>
+    <div id="zoom-polera-4" class="lightbox-overlay"><a href="#modal-poleras" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/descarga (2).jpg" alt="Polera Skeleton" class="foto-lightbox"></div>
+    <div id="zoom-polera-5" class="lightbox-overlay"><a href="#modal-poleras" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/ECKO UNLTD Riding Demon Zip Hoddie @ecko_unltd.jpg" alt="Polera Ecko Unltd" class="foto-lightbox"></div>
+    <div id="zoom-polera-6" class="lightbox-overlay"><a href="#modal-poleras" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/FULLZIP CREEPER via @nemo_y2k.jpg" alt="Polera Creeper" class="foto-lightbox"></div>
+
+
+    <!-- MODAL 4: GORROS DE LANA Y2K -->
+    <div id="modal-gorros" class="modal-overlay">
+      <div class="contenido-modal contenido-modal-amplio">
+        <a href="#productos" class="boton-cerrar-modal">&times;</a>
+        <h2 class="titulo-modal">Gorros de lana Y2K</h2>
+        <p class="subtitulo-modal">Haz clic en cualquier imagen para verla en grande.</p>
+        
+        <div class="contenedor-modelos-modal">
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-gorro-1" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/MMA Elite Beanie via @reskaten_lajoya.jpg" alt="Gorro Mma Elite" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Gorro Mma Elite</h3>
+              <span class="precio-modelo">$6.00</span>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Gorro%20Beanie%20Classic%20($6.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Gorro%20Beanie%20Classic%20($6.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-gorro-2" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Gorro Monster x Fox via @bazarleag.jpg" alt="Gorro Monster" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Gorro Monster</h3>
+              <span class="precio-modelo">$7.00</span>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Gorro%20Cyber%20Star%20($7.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Gorro%20Cyber%20Star%20($7.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-gorro-3" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/@afflictionclothing Beanie.jpg" alt="Gorro Affliction" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Gorro Affliction</h3>
+              <span class="precio-modelo">$8.00</span>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Gorro%20Web%20Spider%20($8.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Gorro%20Web%20Spider%20($8.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-gorro-4" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Vintage DC Skate Co_ Brimmed Beanie @dcshoes.jpg" alt="Gorro Dc" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Gorro Dc</h3>
+              <span class="precio-modelo">$7.50</span>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Gorro%20Striped%20Grunge%20($7.50)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Gorro%20Striped%20Grunge%20($7.50)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-gorro-5" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/domo.jpg" alt="Gorro Domo" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Gorro Domo</h3>
+              <span class="precio-modelo">$8.50</span>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Gorro%20Flame%20Graphic%20($8.50)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Gorro%20Flame%20Graphic%20($8.50)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-gorro-6" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/creeper.jpg" alt="Gorro Creeper" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Gorro Creeper</h3>
+              <span class="precio-modelo">$9.00</span>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20el%20Gorro%20Cat%20Ears%20Y2K%20($9.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20el%20Gorro%20Cat%20Ears%20Y2K%20($9.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOXES GORROS -->
+    <div id="zoom-gorro-1" class="lightbox-overlay"><a href="#modal-gorros" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/MMA Elite Beanie via @reskaten_lajoya.jpg" alt="Gorro Mma Elite" class="foto-lightbox"></div>
+    <div id="zoom-gorro-2" class="lightbox-overlay"><a href="#modal-gorros" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Gorro Monster x Fox via @bazarleag.jpg" alt="Gorro Monster" class="foto-lightbox"></div>
+    <div id="zoom-gorro-3" class="lightbox-overlay"><a href="#modal-gorros" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/@afflictionclothing Beanie.jpg" alt="Gorro Affliction" class="foto-lightbox"></div>
+    <div id="zoom-gorro-4" class="lightbox-overlay"><a href="#modal-gorros" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Vintage DC Skate Co_ Brimmed Beanie @dcshoes.jpg" alt="Gorro Dc" class="foto-lightbox"></div>
+    <div id="zoom-gorro-5" class="lightbox-overlay"><a href="#modal-gorros" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/domo.jpg" alt="Gorro Domo" class="foto-lightbox"></div>
+    <div id="zoom-gorro-6" class="lightbox-overlay"><a href="#modal-gorros" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/creeper.jpg" alt="Gorro Creeper" class="foto-lightbox"></div>
+
+
+    <!-- MODAL 5: ZAPATILLAS Y2K -->
+    <div id="modal-zapatillas" class="modal-overlay">
+      <div class="contenido-modal contenido-modal-amplio">
+        <a href="#productos" class="boton-cerrar-modal">&times;</a>
+        <h2 class="titulo-modal">Zapatillas Y2K</h2>
+        <p class="subtitulo-modal">Haz clic en cualquier imagen para verla en grande.</p>
+        
+        <div class="contenedor-modelos-modal">
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-zapatilla-1" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Dc zapas.jpg" alt="Zapatillas Dc" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Zapatilla Dc</h3>
+              <span class="precio-modelo">$38.00</span>
+              <div class="grupo-reserva"><label for="talla-zapatillas-1">Talla:</label><select id="talla-zapatillas-1" class="select-talla"><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20las%20Zapatillas%20Chunky%20Classic%20($38.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20las%20Zapatillas%20Chunky%20Classic%20($38.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-zapatilla-2" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Etnies x Metal Mulisha.jpg" alt="Zapatillas Etnies x Metal Mulisha" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Zapatilla E. Metal Mulisha</h3>
+              <span class="precio-modelo">$42.00</span>
+              <div class="grupo-reserva"><label for="talla-zapatillas-2">Talla:</label><select id="talla-zapatillas-2" class="select-talla"><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20las%20Zapatillas%20DC%20Court%20Graffik%20($42.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20las%20Zapatillas%20DC%20Court%20Graffik%20($42.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-zapatilla-3" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Globe.jpg" alt="Zapatillas Goble" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Zapatilla Globe</h3>
+              <span class="precio-modelo">$45.00</span>
+              <div class="grupo-reserva"><label for="talla-zapatillas-3">Talla:</label><select id="talla-zapatillas-3" class="select-talla"><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20las%20Zapatillas%20Osiris%20D3%202001%20($45.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20las%20Zapatillas%20Osiris%20D3%202001%20($45.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-zapatilla-4" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Osiris.jpg" alt="Zapatillas Osiris" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Zapatilla Osiris</h3>
+              <span class="precio-modelo">$40.00</span>
+              <div class="grupo-reserva"><label for="talla-zapatillas-4">Talla:</label><select id="talla-zapatillas-4" class="select-talla"><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20las%20Zapatillas%20Vans%20Knu%20Skool%20Y2K%20($40.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20las%20Zapatillas%20Vans%20Knu%20Skool%20Y2K%20($40.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-zapatilla-5" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/vans shoes ☆.jpg" alt="Zapatillas Vans" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Zapatilla Vans</h3>
+              <span class="precio-modelo">$44.00</span>
+              <div class="grupo-reserva"><label for="talla-zapatillas-5">Talla:</label><select id="talla-zapatillas-5" class="select-talla"><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20las%20Zapatillas%20Globe%20Sabre%20Skate%20($44.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20las%20Zapatillas%20Globe%20Sabre%20Skate%20($44.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-zapatilla-6" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/World.jpg" alt="Zapatillas World" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Zapatilla World</h3>
+              <span class="precio-modelo">$39.00</span>
+              <div class="grupo-reserva"><label for="talla-zapatillas-6">Talla:</label><select id="talla-zapatillas-6" class="select-talla"><option value="36">36</option><option value="37">37</option><option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option><option value="42">42</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20las%20Zapatillas%20Etnies%20Fader%20Metallic%20($39.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20las%20Zapatillas%20Etnies%20Fader%20Metallic%20($39.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOXES ZAPATILLAS -->
+    <div id="zoom-zapatilla-1" class="lightbox-overlay"><a href="#modal-zapatillas" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Dc zapas.jpg" alt="Zapatillas Dc" class="foto-lightbox"></div>
+    <div id="zoom-zapatilla-2" class="lightbox-overlay"><a href="#modal-zapatillas" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Etnies x Metal Mulisha.jpg" alt="Zapatillas Etnies x Metal Mulisha" class="foto-lightbox"></div>
+    <div id="zoom-zapatilla-3" class="lightbox-overlay"><a href="#modal-zapatillas" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Globe.jpg" alt="Zapatillas Globe" class="foto-lightbox"></div>
+    <div id="zoom-zapatilla-4" class="lightbox-overlay"><a href="#modal-zapatillas" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Osiris.jpg" alt="Vans Knu Skool Y2K" class="foto-lightbox"></div>
+    <div id="zoom-zapatilla-5" class="lightbox-overlay"><a href="#modal-zapatillas" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/vans shoes ☆.jpg" alt="Zapatillas Vans" class="foto-lightbox"></div>
+    <div id="zoom-zapatilla-6" class="lightbox-overlay"><a href="#modal-zapatillas" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/World.jpg" alt="Zapatillas World" class="foto-lightbox"></div>
+
+
+    <!-- MODAL 6: MANGA LARGA Y2K -->
+    <div id="modal-mangalarga" class="modal-overlay">
+      <div class="contenido-modal contenido-modal-amplio">
+        <a href="#productos" class="boton-cerrar-modal">&times;</a>
+        <h2 class="titulo-modal">Manga Larga Y2K</h2>
+        <p class="subtitulo-modal">Haz clic en cualquier imagen para verla en grande.</p>
+        
+        <div class="contenedor-modelos-modal">
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-mangalarga-1" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Manga larga, y2k mma.jpg" alt="Manga Larga Mma Elite" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Manga Larga Mma Elite</h3>
+              <span class="precio-modelo">$14.00</span>
+              <div class="grupo-reserva"><label for="talla-mangalarga-1">Talla:</label><select id="talla-mangalarga-1" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Manga%20Larga%20Graphic%20($14.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Manga%20Larga%20Graphic%20($14.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-mangalarga-2" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/manga larga azul.jpg" alt="Manga Larga Getfordrift" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Manga Larga Getfordrift</h3>
+              <span class="precio-modelo">$15.50</span>
+              <div class="grupo-reserva"><label for="talla-mangalarga-2">Talla:</label><select id="talla-mangalarga-2" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Manga%20Larga%20Affliction%20Dark%20($15.50)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Manga%20Larga%20Affliction%20Dark%20($15.50)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-mangalarga-3" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/Manga larga Affliction.jpg" alt="Manga Larga Affliction" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Manga Larga Affliction</h3>
+              <span class="precio-modelo">$16.00</span>
+              <div class="grupo-reserva"><label for="talla-mangalarga-3">Talla:</label><select id="talla-mangalarga-3" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Manga%20Larga%20Cyber%20Tribal%20($16.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Manga%20Larga%20Cyber%20Tribal%20($16.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-mangalarga-4" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/manga larga 4.jpg" alt="Manga Larga Tapout Vintage" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Tapout Vintage Sleeves</h3>
+              <span class="precio-modelo">$15.00</span>
+              <div class="grupo-reserva"><label for="talla-mangalarga-4">Talla:</label><select id="talla-mangalarga-4" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Manga%20Larga%20Tapout%20Vintage%20($15.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Manga%20Larga%20Tapout%20Vintage%20($15.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-mangalarga-5" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/manga larga 5.jpg" alt="Manga Larga Fox Racing" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Fox Racing Moto Jersey</h3>
+              <span class="precio-modelo">$17.00</span>
+              <div class="grupo-reserva"><label for="talla-mangalarga-5">Talla:</label><select id="talla-mangalarga-5" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Manga%20Larga%20Fox%20Racing%20($17.00)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Manga%20Larga%20Fox%20Racing%20($17.00)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+
+          <div class="tarjeta-modelo-unico">
+            <a href="#zoom-mangalarga-6" title="Ampliar imagen"><div class="contenedor-foto-modelo"><img src="Imagenes/manga larga 6.jpg" alt="Manga Larga Skeleton Mesh" class="foto-modelo-unico"></div></a>
+            <div class="info-modelo-unico">
+              <h3>Skeleton Mesh Longsleeve</h3>
+              <span class="precio-modelo">$16.50</span>
+              <div class="grupo-reserva"><label for="talla-mangalarga-6">Talla:</label><select id="talla-mangalarga-6" class="select-talla"><option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select></div>
+              <div class="grupo-botones-modal">
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20reservar%20la%20Manga%20Larga%20Skeleton%20Mesh%20($16.50)" target="_blank" class="boton-accion boton-reservar"><i class="fa-solid fa-bookmark"></i> Reservar</a>
+                <a href="https://wa.me/51933843278?text=Hola,%20quiero%20comprar%20la%20Manga%20Larga%20Skeleton%20Mesh%20($16.50)" target="_blank" class="boton-accion boton-comprar-modal"><i class="fa-solid fa-bag-shopping"></i> Comprar</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIGHTBOXES MANGA LARGA -->
+    <div id="zoom-mangalarga-1" class="lightbox-overlay"><a href="#modal-mangalarga" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Manga larga, y2k mma.jpg" alt="Manga Larga Graphic" class="foto-lightbox"></div>
+    <div id="zoom-mangalarga-2" class="lightbox-overlay"><a href="#modal-mangalarga" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/manga larga azul.jpg" alt="Affliction Dark Longsleeve" class="foto-lightbox"></div>
+    <div id="zoom-mangalarga-3" class="lightbox-overlay"><a href="#modal-mangalarga" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/Manga larga Affliction.jpg" alt="Manga Larga Affliction" class="foto-lightbox"></div>
+    <div id="zoom-mangalarga-4" class="lightbox-overlay"><a href="#modal-mangalarga" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/manga larga 4.jpg" alt="Tapout Vintage Sleeves" class="foto-lightbox"></div>
+    <div id="zoom-mangalarga-5" class="lightbox-overlay"><a href="#modal-mangalarga" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/manga larga 5.jpg" alt="Fox Racing Moto Jersey" class="foto-lightbox"></div>
+    <div id="zoom-mangalarga-6" class="lightbox-overlay"><a href="#modal-mangalarga" class="boton-cerrar-lightbox">&times;</a><img src="Imagenes/manga larga 6.jpg" alt="Skeleton Mesh Longsleeve" class="foto-lightbox"></div>
+
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="seccion-galeria">
+      <h2 class="titulo-seccion">
+        Galería
+      </h2>
+      <div class="contenedor-galeria">
+        <article class="tarjeta-galeria">
+          <div class="contenedor-foto">
+            <img src="Imagenes/3.jpeg" alt="Galería 1" class="foto-galeria">
+          </div>
+        </article>
+        <article class="tarjeta-galeria">
+          <div class="contenedor-foto">
+            <img src="Imagenes/2.jpeg" alt="Galería 2" class="foto-galeria">
+          </div>
+        </article>
+        <article class="tarjeta-galeria">
+          <div class="contenedor-foto">
+            <img src="Imagenes/4.jpeg" alt="Galería 3" class="foto-galeria">
+          </div>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="seccion-testimonios">
+      <h2 class="titulo-seccion">
+        Lo que dicen nuestros clientes
+      </h2>
+      <div class="contenedor-testimonios">
+        <article class="tarjeta-testimonio">
+          <img src="Imagenes/foto persona.jpg" alt="Carlos Mendoza" class="foto-testimonio">
+          <div class="estrellas">★★★★★</div>
+          <p class="texto-testimonio">
+            "Me encantó la ropa. Los diseños tienen un estilo Y2K increíble y la calidad es muy buena."
+          </p>
+          <h3>Carlos Mendoza</h3>
+          <span>Cliente</span>
+        </article>
+
+        <article class="tarjeta-testimonio">
+          <img src="Imagenes/foto persona mujer.jpg" alt="Ana Torres" class="foto-testimonio">
+          <div class="estrellas">★★★★★</div>
+          <p class="texto-testimonio">
+            "La ropa llegó en buen estado y me gustó mucho el diseño. Definitivamente volvería a comprar."
+          </p>
+          <h3>Ana Torres</h3>
+          <span>Cliente</span>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="seccion-contacto">
+      <div class="contenedor-formulario">
+        <h2 class="titulo-formulario">
+          ¿Tienes dudas? Contáctanos
+        </h2>
+        <p class="subtitulo-formulario">
+          Escríbenos y estaremos encantados de ayudarte.
+        </p>
+        <form class="formulario">
+          <div class="grupo-campo">
+            <label for="nombre" class="etiqueta">Nombre Completo</label>
+            <input type="text" id="nombre" class="campo-texto" placeholder="Ej. Juan Pérez" required>
+          </div>
+          <div class="grupo-campo">
+            <label for="email" class="etiqueta">Correo Electrónico</label>
+            <input type="email" id="email" class="campo-texto" placeholder="Ej. juan@correo.com" required>
+          </div>
+          <div class="grupo-campo">
+            <label for="mensaje" class="etiqueta">Tu Mensaje</label>
+            <textarea id="mensaje" class="campo-texto area-texto" placeholder="Escribe tu duda aquí..." required></textarea>
+          </div>
+          <button type="submit" class="boton-enviar">
+            <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </section>
+
+
+    <!-- BOTÓN FLOTANTE DE MÚSICA -->
+    <button type="button" id="btn-musica" class="btn-musica" title="Pausar / Reproducir música">
+      <i class="fa-solid fa-music" id="icono-musica"></i>
+    </button>
+
+
+    <!-- BOTÓN DE WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/51933843278" id="ws-flotante" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="pie-pagina">
+      <p id="texto-copy">© 2026 Wtf_ashuraY2k - Tienda de Ropa Y2K</p>
+      <div class="redes-sociales">
+        <a href="https://www.instagram.com/wtf_ashuray2k" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://wa.me/51933843278" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp"></i>
+        </a>
+      </div>
+    </footer>
+
+  </div> <!-- FIN DE CONTENIDO TIENDA -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
